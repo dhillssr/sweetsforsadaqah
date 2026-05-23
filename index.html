@@ -433,33 +433,6 @@
     </p>
   </div>
 
-  <!-- Cookie grid -->
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14"
-       x-data="{
-         cookies: [
-           { name:'Brown Butter Chocolate Chunk', desc:'Toasted brown butter, dark Valrhona chunks, flaked sea salt.', price:4.50, tag:'Bestseller', img:'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=80' },
-           { name:'Cardamom Rose Shortbread',    desc:'Toasted cardamom, edible petals, hint of orange blossom.',     price:5.00, tag:'New',        img:'https://images.unsplash.com/photo-1568051243851-f9b136146e97?auto=format&fit=crop&w=900&q=80' },
-           { name:'Tahini Date Caramel',         desc:'Medjool date caramel folded into sesame-rich tahini dough.',   price:5.25, tag:'',           img:'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=900&q=80' },
-           { name:'Pistachio Olive Oil',         desc:'Sicilian pistachio, cold-pressed olive oil, lemon zest.',      price:5.00, tag:'',           img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=80' },
-           { name:'Saffron Almond Crescent',     desc:'Persian saffron, ground almond, dusted in powdered sugar.',    price:5.50, tag:'Seasonal',   img:'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=80' },
-           { name:'Cocoa & Sea Salt Rye',        desc:'Bittersweet cocoa, malted rye, smoked flaked salt finish.',    price:4.75, tag:'',           img:'https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=900&q=80' },
-         ]
-       }">
-    <template x-for="(c, idx) in cookies" :key="idx">
-      <article class="group reveal">
-        <div class="mt-5 flex items-start justify-between gap-4">
-          <div>
-            <h3 class="font-serif-display text-2xl text-forest-900 leading-tight" x-text="c.name"></h3>
-            <p class="mt-2 text-sm text-ink/65 leading-relaxed" x-text="c.desc"></p>
-          </div>
-        </div>
-        <button @click="toast = c.name + ' added — barakAllahu feek'"
-                class="mt-5 w-full inline-flex items-center justify-center gap-2 border border-forest-800/25 hover:border-forest-800 hover:bg-forest-800 hover:text-cream transition py-3 text-[12px] tracking-[0.22em] uppercase text-forest-800">
-          <i data-lucide="plus" class="w-4 h-4"></i> Add to order
-        </button>
-      </article>
-    </template>
-  </div>
 
   <!-- Box bundles -->
   <div class="mt-20 grid md:grid-cols-3 gap-6">
