@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sweets for Sadaqah — Baked with intention. Given with sincerity.</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Alpine -->
+<script defer src="https://unpkg.com/alpinejs@3.13.5/dist/cdn.min.js"></script>
+
+<!-- Lucide -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet" />
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          forest: {
+            DEFAULT: '#0B3C26',
+            900: '#082B1B',
+            800: '#0B3C26',
+            700: '#134E33',
+            600: '#1B6342',
+            500: '#2C8056',
+            300: '#A9C7B7',
+            100: '#E4EEE8',
+          },
+          cream: {
+            DEFAULT: '#FDFBF7',
+            100: '#FAF6EE',
+            200: '#F1EADC',
+          },
+          ink: '#1A1F1B',
+          gold: '#B5894A',
+        },
+        fontFamily: {
+          serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+          sans:  ['Manrope', 'system-ui', 'sans-serif'],
+          script:['"Pinyon Script"', 'cursive'],
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(11,60,38,0.04), 0 8px 28px -12px rgba(11,60,38,0.18)',
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Manrope', system-ui, sans-serif; background:#FDFBF7; color:#1A1F1B; -webkit-font-smoothing: antialiased; }
+  .font-serif-display { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; }
+  .font-script { font-family: 'Pinyon Script', cursive; }
+
+  /* Subtle striped placeholder pattern */
+  .ph-stripes {
+    background-image:
+      repeating-linear-gradient(135deg,
+        rgba(11,60,38,0.06) 0 1px,
+        transparent 1px 14px),
+      linear-gradient(180deg, #F1EADC 0%, #FAF6EE 100%);
+  }
+
+  /* Underline animation on nav links */
+  .nav-link { position:relative; }
+  .nav-link::after {
+    content:''; position:absolute; left:0; right:0; bottom:-4px; height:1px;
+    background:#0B3C26; transform:scaleX(0); transform-origin:left;
+    transition: transform .35s ease;
+  }
+  .nav-link:hover::after { transform:scaleX(1); }
+
+  /* Soft scroll reveal */
+  .reveal { opacity:0; transform: translateY(12px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity:1; transform:none; }
+
+  /* Logo badge curved text via SVG */
+  .badge-shadow { box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 20px -8px rgba(11,60,38,0.5); }
+
+  /* Decorative hairline divider */
+  .hairline {
+    height:1px; width:100%;
+    background: linear-gradient(90deg, transparent, rgba(11,60,38,0.25), transparent);
+  }
+
+  /* Button focus */
+  button:focus-visible, a:focus-visible { outline: 2px solid #0B3C26; outline-offset: 3px; border-radius: 4px; }
+
+  /* Marquee */
+  @keyframes marquee { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+  .marquee-track { animation: marquee 38s linear infinite; }
+</style>
+</head>
+
+<body x-data="{ mobileOpen:false, toast:null }" class="min-h-screen">
+
+<!-- ============== TOP RIBBON ============== -->
+<div class="bg-forest-800 text-cream-100 text-[12px] tracking-[0.18em] uppercase">
+  <div class="max-w-7xl mx-auto px-5 py-2.5 flex items-center justify-center gap-3 overflow-hidden">
+    <i data-lucide="sparkles" class="w-3.5 h-3.5 opacity-80"></i>
+    <span class="opacity-90">Half of every order is given as sadaqah · Baked fresh weekly in small batches</span>
+  </div>
+</div>
+
+<!-- ============== NAVIGATION ============== -->
+<header class="sticky top-0 z-40 bg-cream/85 backdrop-blur-md border-b border-forest-800/10">
+  <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+
+    <!-- Logo badge -->
+    <a href="#top" class="flex items-center gap-3 group">
+      <span class="relative inline-block w-12 h-12 rounded-full bg-forest-800 text-cream badge-shadow overflow-hidden">
+        <!-- Curved EST badge -->
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+          <defs>
+            <path id="topArc" d="M 18,50 A 32,32 0 0 1 82,50" fill="none" />
+            <path id="botArc" d="M 18,55 A 32,32 0 0 0 82,55" fill="none" />
+          </defs>
+          <text fill="#FDFBF7" font-family="Manrope" font-size="7" letter-spacing="2.5">
+            <textPath href="#topArc" startOffset="50%" text-anchor="middle">EST · 2026</textPath>
+          </text>
+          <text fill="#FDFBF7" font-family="Manrope" font-size="5.5" letter-spacing="2">
+            <textPath href="#botArc" startOffset="50%" text-anchor="middle">QURAN 92:5–7</textPath>
+          </text>
+          <text x="50" y="44" text-anchor="middle" fill="#FDFBF7" font-family="Cormorant Garamond" font-size="9" font-style="italic">Sweets for</text>
+          <text x="50" y="62" text-anchor="middle" fill="#FDFBF7" font-family="Pinyon Script" font-size="16">Sadaqah</text>
+        </svg>
+      </span>
+      <span class="hidden sm:flex flex-col leading-tight">
+        <span class="font-serif-display text-[20px] text-forest-800">Sweets for <em class="font-script not-italic text-[24px] align-baseline">Sadaqah</em></span>
+        <span class="text-[10px] tracking-[0.28em] uppercase text-forest-800/60 -mt-1">Baked with intention</span>
+      </span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden lg:flex items-center gap-10 text-[14px] tracking-wide text-forest-900/85">
+      <li><a href="#story" class="nav-link">Our Story</a></li>
+      <li><a href="#mission" class="nav-link">Mission</a></li>
+      <li><a href="#menu" class="nav-link">Menu</a></li>
+      <li><a href="#impact" class="nav-link">Impact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <a href="#menu" class="hidden md:inline-flex items-center gap-2 bg-forest-800 hover:bg-forest-700 transition text-cream px-5 py-3 text-[13px] tracking-[0.18em] uppercase">
+        Order now <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+      </a>
+
+      <!-- Mobile menu trigger -->
+      <button @click="mobileOpen = true" class="lg:hidden w-11 h-11 inline-flex items-center justify-center rounded-full border border-forest-800/15 text-forest-800" aria-label="Open menu">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div x-cloak x-show="mobileOpen" x-transition.opacity class="fixed inset-0 z-50 bg-forest-900/40" @click="mobileOpen=false"></div>
+  <aside x-cloak x-show="mobileOpen"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="translate-x-full"
+         x-transition:enter-end="translate-x-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="translate-x-0"
+         x-transition:leave-end="translate-x-full"
+         class="fixed top-0 right-0 z-50 h-full w-[82%] max-w-sm bg-cream shadow-2xl flex flex-col">
+    <div class="h-20 px-6 flex items-center justify-between border-b border-forest-800/10">
+      <span class="font-serif-display text-xl text-forest-800">Menu</span>
+      <button @click="mobileOpen=false" class="w-10 h-10 rounded-full border border-forest-800/15 text-forest-800 inline-flex items-center justify-center" aria-label="Close menu">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+    <nav class="flex-1 px-6 py-8 flex flex-col gap-1">
+      <template x-for="(item, i) in [
+        {label:'Our Story', href:'#story'},
+        {label:'Mission',   href:'#mission'},
+        {label:'Menu',      href:'#menu'},
+        {label:'Impact',    href:'#impact'},
+        {label:'Contact',   href:'#footer'},
+      ]" :key="i">
+        <a :href="item.href" @click="mobileOpen=false"
+           class="flex items-center justify-between py-4 border-b border-forest-800/10 font-serif-display text-[26px] text-forest-800">
+          <span x-text="item.label"></span>
+          <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-60"></i>
+        </a>
+      </template>
+    </nav>
+    <div class="p-6">
+      <a href="#menu" @click="mobileOpen=false" class="block text-center bg-forest-800 text-cream px-6 py-4 tracking-[0.2em] text-[13px] uppercase">Order now</a>
+      <p class="mt-4 text-xs text-forest-800/60 text-center">Inspired by Surah Al-Layl · 92:5–7</p>
+    </div>
+  </aside>
+</header>
+
+<main id="top">
+
+<!-- ============== HERO ============== -->
+<section class="relative">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-12 gap-10 lg:gap-14 pt-14 lg:pt-24 pb-16 lg:pb-28">
+
+    <!-- Copy -->
+    <div class="lg:col-span-6 flex flex-col justify-center reveal">
+      <div class="inline-flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase text-forest-800/70">
+        <span class="w-8 h-px bg-forest-800/40"></span>
+        <span>A bakery rooted in giving</span>
+      </div>
+
+      <h1 class="mt-6 font-serif-display text-[44px] sm:text-[64px] lg:text-[84px] leading-[0.95] text-forest-900 text-balance">
+        Every sweet,<br/>
+        an act of <em class="font-script not-italic text-forest-700 text-[1.15em] leading-[0.6]">sadaqah</em>.
+      </h1>
+
+      <p class="mt-8 text-[17px] leading-[1.7] text-ink/75 max-w-xl">
+        Slow-baked cookies made in small batches and offered with sincerity.
+        Half of every order is dedicated to charitable causes — turning ordinary
+        moments into acts of <em>ibadah</em>, <em>barakah</em>, and collective reward.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href="#menu" class="inline-flex items-center gap-3 bg-forest-800 hover:bg-forest-700 transition text-cream px-7 py-4 text-[13px] tracking-[0.22em] uppercase">
+          Order cookies <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <a href="#mission" class="inline-flex items-center gap-2 text-forest-800 text-[13px] tracking-[0.22em] uppercase border-b border-forest-800/40 hover:border-forest-800 pb-1 transition">
+          Read our mission
+        </a>
+      </div>
+
+      <!-- Trust row -->
+      <div class="mt-14 grid grid-cols-3 gap-6 max-w-md">
+        <div>
+          <div class="font-serif-display text-3xl text-forest-800">50<span class="text-forest-700">%</span></div>
+          <div class="text-[11px] tracking-[0.18em] uppercase text-ink/55 mt-1">Given as sadaqah</div>
+        </div>
+        <div>
+          <div class="font-serif-display text-3xl text-forest-800">100%</div>
+          <div class="text-[11px] tracking-[0.18em] uppercase text-ink/55 mt-1">Halal · small batch</div>
+        </div>
+        <div>
+          <div class="font-serif-display text-3xl text-forest-800">2026</div>
+          <div class="text-[11px] tracking-[0.18em] uppercase text-ink/55 mt-1">Established</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual -->
+    <div class="lg:col-span-6 relative reveal">
+      <div class="relative aspect-[4/5] w-full rounded-[6px] overflow-hidden bg-forest-800">
+        <!-- Placeholder image -->
+        <img alt="Stack of golden brown cookies on a linen cloth"
+             class="absolute inset-0 w-full h-full object-cover"
+             src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1400&q=80"
+             onerror="this.style.display='none'; this.parentElement.classList.add('ph-stripes')" />
+        <!-- Overlay gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-forest-900/55 via-forest-900/10 to-transparent"></div>
+        <!-- Ayah overlay -->
+        <div class="absolute bottom-0 left-0 right-0 p-7 lg:p-10 text-cream">
+          <div class="text-[10px] tracking-[0.3em] uppercase opacity-80">Surah Al-Layl · 92:5</div>
+          <p class="mt-3 font-serif-display italic text-2xl lg:text-3xl leading-snug max-w-md">
+            “As for the one who gives and is mindful of Allah…”
+          </p>
+        </div>
+        <!-- Corner badge -->
+        <div class="absolute top-5 right-5 w-24 h-24 rounded-full bg-cream text-forest-800 flex flex-col items-center justify-center text-center border border-forest-800/10">
+          <div class="text-[9px] tracking-[0.22em] uppercase">Baked</div>
+          <div class="font-serif-display text-xl leading-none mt-0.5">weekly</div>
+          <div class="text-[9px] tracking-[0.22em] uppercase mt-0.5">small batch</div>
+        </div>
+      </div>
+
+      <!-- Small floating note -->
+      <div class="hidden lg:flex absolute -left-10 top-10 bg-cream shadow-soft px-5 py-4 items-center gap-3 border border-forest-800/10">
+        <i data-lucide="heart-handshake" class="w-5 h-5 text-forest-700"></i>
+        <div class="text-[12px] leading-tight">
+          <div class="font-medium text-forest-800">Half goes to charity</div>
+          <div class="text-ink/60">On every single order</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marquee verse -->
+  <div class="border-y border-forest-800/10 bg-cream-100 overflow-hidden">
+    <div class="flex marquee-track whitespace-nowrap py-5">
+      <template x-for="i in 2" :key="i">
+        <div class="flex items-center gap-10 px-6 font-serif-display italic text-2xl text-forest-800/80">
+          <span>Give sincerely</span><span class="text-forest-300">✦</span>
+          <span>Be mindful</span><span class="text-forest-300">✦</span>
+          <span>Trust in ease</span><span class="text-forest-300">✦</span>
+          <span>Bake with intention</span><span class="text-forest-300">✦</span>
+          <span>Share barakah</span><span class="text-forest-300">✦</span>
+          <span>Give sincerely</span><span class="text-forest-300">✦</span>
+          <span>Be mindful</span><span class="text-forest-300">✦</span>
+          <span>Trust in ease</span><span class="text-forest-300">✦</span>
+          <span>Bake with intention</span><span class="text-forest-300">✦</span>
+          <span>Share barakah</span><span class="text-forest-300">✦</span>
+        </div>
+      </template>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STORY STRIP ============== -->
+<section id="story" class="max-w-7xl mx-auto px-5 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-12 gap-12">
+  <div class="lg:col-span-4 reveal">
+    <div class="text-[11px] tracking-[0.3em] uppercase text-forest-800/70">Our Story</div>
+    <h2 class="mt-4 font-serif-display text-4xl lg:text-5xl text-forest-900 leading-tight">
+      A small kitchen with a wide intention.
+    </h2>
+  </div>
+  <div class="lg:col-span-8 lg:pl-10 lg:border-l lg:border-forest-800/10 reveal">
+    <p class="text-[17px] leading-[1.8] text-ink/75">
+      Sweets for Sadaqah began in a home kitchen with a simple question: what if a
+      bakery existed not for itself, but for the people it could uplift? Each recipe
+      is developed slowly, tested in small batches, and finished by hand — because
+      what we make is more than a cookie. It is an offering, a reminder, and an
+      invitation to give.
+    </p>
+
+    <div class="hairline my-10"></div>
+
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <i data-lucide="wheat" class="w-6 h-6 text-forest-700"></i>
+        <h3 class="mt-4 font-serif-display text-xl text-forest-900">Honest ingredients</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink/65">Real butter, unbleached flour, fair-trade chocolate. No shortcuts.</p>
+      </div>
+      <div>
+        <i data-lucide="hand-coins" class="w-6 h-6 text-forest-700"></i>
+        <h3 class="mt-4 font-serif-display text-xl text-forest-900">Half given back</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink/65">Fifty percent of every order funds verified charitable causes.</p>
+      </div>
+      <div>
+        <i data-lucide="moon-star" class="w-6 h-6 text-forest-700"></i>
+        <h3 class="mt-4 font-serif-display text-xl text-forest-900">Made with niyyah</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink/65">Every batch is begun with intention — bismillah, then bake.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MISSION (cornerstone) ============== -->
+<section id="mission" class="bg-forest-800 text-cream relative overflow-hidden">
+  <!-- Decorative corner ornaments -->
+  <svg class="absolute top-6 left-6 w-20 h-20 opacity-30" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
+    <path d="M2 40 Q 2 2 40 2"/>
+    <path d="M10 40 Q 10 10 40 10"/>
+  </svg>
+  <svg class="absolute top-6 right-6 w-20 h-20 opacity-30" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
+    <path d="M78 40 Q 78 2 40 2"/>
+    <path d="M70 40 Q 70 10 40 10"/>
+  </svg>
+  <svg class="absolute bottom-6 left-6 w-20 h-20 opacity-30" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
+    <path d="M2 40 Q 2 78 40 78"/>
+    <path d="M10 40 Q 10 70 40 70"/>
+  </svg>
+  <svg class="absolute bottom-6 right-6 w-20 h-20 opacity-30" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
+    <path d="M78 40 Q 78 78 40 78"/>
+    <path d="M70 40 Q 70 70 40 70"/>
+  </svg>
+
+  <div class="max-w-3xl mx-auto px-6 py-24 lg:py-32 text-center reveal">
+
+    <!-- Mini logo seal -->
+    <div class="mx-auto w-28 h-28 rounded-full border border-cream/30 flex items-center justify-center bg-forest-900/40">
+      <svg viewBox="0 0 100 100" class="w-full h-full">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#FDFBF7" stroke-opacity="0.3"/>
+        <defs>
+          <path id="topArc2" d="M 18,50 A 32,32 0 0 1 82,50" fill="none" />
+          <path id="botArc2" d="M 18,55 A 32,32 0 0 0 82,55" fill="none" />
+        </defs>
+        <text fill="#FDFBF7" font-family="Manrope" font-size="6" letter-spacing="2.5">
+          <textPath href="#topArc2" startOffset="50%" text-anchor="middle">EST · 2026</textPath>
+        </text>
+        <text fill="#FDFBF7" font-family="Manrope" font-size="4.6" letter-spacing="1.8">
+          <textPath href="#botArc2" startOffset="50%" text-anchor="middle">QURAN 92:5–7</textPath>
+        </text>
+        <text x="50" y="44" text-anchor="middle" fill="#FDFBF7" font-family="Cormorant Garamond" font-size="9" font-style="italic">Sweets for</text>
+        <text x="50" y="62" text-anchor="middle" fill="#FDFBF7" font-family="Pinyon Script" font-size="16">Sadaqah</text>
+      </svg>
+    </div>
+
+    <div class="mt-10 text-[11px] tracking-[0.32em] uppercase text-cream/70">The Inspiration · Surah Al-Layl 92:5–7</div>
+
+    <blockquote class="mt-8 font-serif-display italic text-3xl sm:text-4xl lg:text-[44px] leading-[1.25] text-cream">
+      “As for the one who gives and is mindful of Allah, and believes in the
+      best reward, We will ease them toward ease.”
+    </blockquote>
+
+    <div class="mt-10 flex items-center justify-center gap-4">
+      <span class="w-12 h-px bg-cream/30"></span>
+      <span class="text-[11px] tracking-[0.32em] uppercase text-cream/60">Our Mission</span>
+      <span class="w-12 h-px bg-cream/30"></span>
+    </div>
+
+    <p class="mt-10 text-[17px] leading-[1.85] text-cream/85 max-w-2xl mx-auto">
+      Sweets for Sadaqah is rooted in giving. Inspired by the words of Allah SWT
+      in Surah Al-Layl, our mission is to give with sincerity, remain mindful of
+      Him, and trust in His promise of ease. Half of all proceeds are dedicated to
+      charitable causes as an act of sadaqah. Every purchase is an opportunity to
+      give sincerely, to uplift those in need, and to be counted among those who
+      give and are mindful. Through every sweet enjoyed, we strive to turn
+      ordinary moments into acts of <em>ibadah</em>, <em>barakah</em>, and
+      collective reward for everyone who supports this mission.
+    </p>
+
+    <div class="mt-12 inline-flex items-center gap-3 text-cream/80 text-[12px] tracking-[0.28em] uppercase">
+      <i data-lucide="sparkle" class="w-4 h-4"></i>
+      May Allah accept it from us
+      <i data-lucide="sparkle" class="w-4 h-4"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MENU / COOKIES ============== -->
+<section id="menu" class="max-w-7xl mx-auto px-5 lg:px-8 py-20 lg:py-28">
+
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 reveal">
+    <div>
+      <div class="text-[11px] tracking-[0.3em] uppercase text-forest-800/70">The Cookie Counter</div>
+      <h2 class="mt-3 font-serif-display text-4xl lg:text-6xl text-forest-900 leading-[1]">
+        Slow-baked. <em class="font-script not-italic text-forest-700">Lovingly</em> wrapped.
+      </h2>
+    </div>
+    <p class="max-w-md text-ink/65 leading-relaxed">
+      Six rotating recipes, baked fresh weekly. Box of six, twelve, or a half-dozen
+      mixed — your choice. Pickup in Brooklyn or shipped nationwide on Tuesdays.
+    </p>
+  </div>
+
+  <!-- Cookie grid -->
+  <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14"
+       x-data="{
+         cookies: [
+           { name:'Brown Butter Chocolate Chunk', desc:'Toasted brown butter, dark Valrhona chunks, flaked sea salt.', price:4.50, tag:'Bestseller', img:'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=80' },
+           { name:'Cardamom Rose Shortbread',    desc:'Toasted cardamom, edible petals, hint of orange blossom.',     price:5.00, tag:'New',        img:'https://images.unsplash.com/photo-1568051243851-f9b136146e97?auto=format&fit=crop&w=900&q=80' },
+           { name:'Tahini Date Caramel',         desc:'Medjool date caramel folded into sesame-rich tahini dough.',   price:5.25, tag:'',           img:'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=900&q=80' },
+           { name:'Pistachio Olive Oil',         desc:'Sicilian pistachio, cold-pressed olive oil, lemon zest.',      price:5.00, tag:'',           img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=80' },
+           { name:'Saffron Almond Crescent',     desc:'Persian saffron, ground almond, dusted in powdered sugar.',    price:5.50, tag:'Seasonal',   img:'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=80' },
+           { name:'Cocoa & Sea Salt Rye',        desc:'Bittersweet cocoa, malted rye, smoked flaked salt finish.',    price:4.75, tag:'',           img:'https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=900&q=80' },
+         ]
+       }">
+    <template x-for="(c, idx) in cookies" :key="idx">
+      <article class="group reveal">
+        <div class="relative aspect-square overflow-hidden bg-cream-100">
+          <img :src="c.img" :alt="c.name"
+               class="absolute inset-0 w-full h-full object-cover transition duration-[1200ms] group-hover:scale-105"
+               onerror="this.style.display='none'; this.parentElement.classList.add('ph-stripes')" />
+          <span x-show="c.tag" x-cloak
+                class="absolute top-3 left-3 bg-cream text-forest-800 text-[10px] tracking-[0.22em] uppercase px-2.5 py-1"
+                x-text="c.tag"></span>
+          <span class="absolute bottom-3 right-3 bg-forest-800 text-cream text-[11px] tracking-[0.18em] px-2.5 py-1"
+                x-text="'$' + c.price.toFixed(2)"></span>
+        </div>
+        <div class="mt-5 flex items-start justify-between gap-4">
+          <div>
+            <h3 class="font-serif-display text-2xl text-forest-900 leading-tight" x-text="c.name"></h3>
+            <p class="mt-2 text-sm text-ink/65 leading-relaxed" x-text="c.desc"></p>
+          </div>
+        </div>
+        <button @click="toast = c.name + ' added — barakAllahu feek'"
+                class="mt-5 w-full inline-flex items-center justify-center gap-2 border border-forest-800/25 hover:border-forest-800 hover:bg-forest-800 hover:text-cream transition py-3 text-[12px] tracking-[0.22em] uppercase text-forest-800">
+          <i data-lucide="plus" class="w-4 h-4"></i> Add to order
+        </button>
+      </article>
+    </template>
+  </div>
+
+  <!-- Box bundles -->
+  <div class="mt-20 grid md:grid-cols-3 gap-6">
+    <div class="border border-forest-800/15 p-8 hover:bg-cream-100 transition">
+      <div class="text-[11px] tracking-[0.28em] uppercase text-forest-800/70">Half Dozen</div>
+      <div class="mt-3 font-serif-display text-5xl text-forest-900">$26</div>
+      <p class="mt-3 text-sm text-ink/65 leading-relaxed">Choose any six. Hand-tied in our forest-green ribbon box.</p>
+      <a href="#menu" class="mt-5 inline-flex items-center gap-2 text-forest-800 text-[12px] tracking-[0.22em] uppercase border-b border-forest-800/30 hover:border-forest-800 pb-0.5">Build your box <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
+    </div>
+    <div class="border-2 border-forest-800 p-8 bg-forest-800 text-cream relative">
+      <span class="absolute -top-3 left-8 bg-cream text-forest-800 text-[10px] tracking-[0.22em] uppercase px-3 py-1">Most loved</span>
+      <div class="text-[11px] tracking-[0.28em] uppercase text-cream/70">The Twelve</div>
+      <div class="mt-3 font-serif-display text-5xl">$48</div>
+      <p class="mt-3 text-sm text-cream/80 leading-relaxed">A dozen mixed cookies — perfect for sharing, gifting, or sadaqah jariyah.</p>
+      <a href="#menu" class="mt-5 inline-flex items-center gap-2 text-cream text-[12px] tracking-[0.22em] uppercase border-b border-cream/50 hover:border-cream pb-0.5">Order the twelve <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
+    </div>
+    <div class="border border-forest-800/15 p-8 hover:bg-cream-100 transition">
+      <div class="text-[11px] tracking-[0.28em] uppercase text-forest-800/70">Sadaqah Subscription</div>
+      <div class="mt-3 font-serif-display text-5xl text-forest-900">$42<span class="text-2xl text-ink/55">/mo</span></div>
+      <p class="mt-3 text-sm text-ink/65 leading-relaxed">A dozen at your door each month. Pause or skip anytime.</p>
+      <a href="#menu" class="mt-5 inline-flex items-center gap-2 text-forest-800 text-[12px] tracking-[0.22em] uppercase border-b border-forest-800/30 hover:border-forest-800 pb-0.5">Subscribe <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== IMPACT ============== -->
+<section id="impact" class="bg-cream-100 border-y border-forest-800/10">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-12 gap-12">
+
+    <div class="lg:col-span-5 reveal">
+      <div class="text-[11px] tracking-[0.3em] uppercase text-forest-800/70">Where the Sadaqah Goes</div>
+      <h2 class="mt-4 font-serif-display text-4xl lg:text-5xl text-forest-900 leading-tight">
+        Half of every order, given on your behalf.
+      </h2>
+      <p class="mt-6 text-ink/70 leading-relaxed max-w-md">
+        We rotate our giving each season among vetted partners — focusing on
+        food security, orphan care, and clean water. Every receipt includes a
+        line showing how much of your purchase became sadaqah.
+      </p>
+
+      <a href="#" class="mt-8 inline-flex items-center gap-2 text-forest-800 text-[12px] tracking-[0.22em] uppercase border-b border-forest-800/30 hover:border-forest-800 pb-1">
+        Read the latest impact report <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+
+    <div class="lg:col-span-7 grid sm:grid-cols-2 gap-5 reveal">
+      <div class="bg-cream p-7 border border-forest-800/10">
+        <div class="flex items-center justify-between">
+          <i data-lucide="utensils" class="w-6 h-6 text-forest-700"></i>
+          <span class="text-[10px] tracking-[0.22em] uppercase text-ink/55">Q1 2026</span>
+        </div>
+        <div class="mt-6 font-serif-display text-5xl text-forest-900">3,420</div>
+        <div class="mt-1 text-sm text-ink/60">Meals served via local food pantries</div>
+      </div>
+      <div class="bg-cream p-7 border border-forest-800/10">
+        <div class="flex items-center justify-between">
+          <i data-lucide="droplet" class="w-6 h-6 text-forest-700"></i>
+          <span class="text-[10px] tracking-[0.22em] uppercase text-ink/55">Ongoing</span>
+        </div>
+        <div class="mt-6 font-serif-display text-5xl text-forest-900">12</div>
+        <div class="mt-1 text-sm text-ink/60">Water wells funded with Islamic Relief</div>
+      </div>
+      <div class="bg-cream p-7 border border-forest-800/10">
+        <div class="flex items-center justify-between">
+          <i data-lucide="book-open" class="w-6 h-6 text-forest-700"></i>
+          <span class="text-[10px] tracking-[0.22em] uppercase text-ink/55">Ongoing</span>
+        </div>
+        <div class="mt-6 font-serif-display text-5xl text-forest-900">38</div>
+        <div class="mt-1 text-sm text-ink/60">Orphans sponsored through Penny Appeal</div>
+      </div>
+      <div class="bg-forest-800 text-cream p-7 flex flex-col justify-between">
+        <i data-lucide="quote" class="w-6 h-6 text-cream/70"></i>
+        <p class="mt-4 font-serif-display italic text-xl leading-snug">
+          “The best of people are those who are most beneficial to others.”
+        </p>
+        <div class="mt-4 text-[10px] tracking-[0.28em] uppercase text-cream/70">— Prophet Muhammad ﷺ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HOW IT WORKS ============== -->
+<section class="max-w-7xl mx-auto px-5 lg:px-8 py-20 lg:py-28">
+  <div class="text-center reveal">
+    <div class="text-[11px] tracking-[0.3em] uppercase text-forest-800/70">How it works</div>
+    <h2 class="mt-3 font-serif-display text-4xl lg:text-5xl text-forest-900">Three steps. One intention.</h2>
+  </div>
+
+  <div class="mt-16 grid md:grid-cols-3 gap-10">
+    <div class="reveal">
+      <div class="font-serif-display text-6xl text-forest-700/30">01</div>
+      <h3 class="mt-2 font-serif-display text-2xl text-forest-900">Choose your cookies</h3>
+      <p class="mt-3 text-ink/65 leading-relaxed">Order a box or set up a monthly subscription — six recipes, rotating weekly.</p>
+    </div>
+    <div class="reveal">
+      <div class="font-serif-display text-6xl text-forest-700/30">02</div>
+      <h3 class="mt-2 font-serif-display text-2xl text-forest-900">We bake with niyyah</h3>
+      <p class="mt-3 text-ink/65 leading-relaxed">Every batch begins with bismillah and is finished by hand the day it ships.</p>
+    </div>
+    <div class="reveal">
+      <div class="font-serif-display text-6xl text-forest-700/30">03</div>
+      <h3 class="mt-2 font-serif-display text-2xl text-forest-900">Half is given</h3>
+      <p class="mt-3 text-ink/65 leading-relaxed">Fifty percent of your order goes to vetted charities. We send a receipt with the proof.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== NEWSLETTER ============== -->
+<section class="bg-forest-800 text-cream">
+  <div class="max-w-4xl mx-auto px-6 py-20 lg:py-24 text-center reveal">
+    <div class="text-[11px] tracking-[0.3em] uppercase text-cream/70">Stay close</div>
+    <h2 class="mt-4 font-serif-display text-4xl lg:text-5xl">
+      A weekly note on what we’re <em class="font-script not-italic">baking</em> and giving.
+    </h2>
+    <p class="mt-5 text-cream/75 max-w-lg mx-auto">
+      Drop your email for early access to seasonal cookies, quarterly impact updates, and the occasional reflection.
+    </p>
+    <form @submit.prevent="toast='Subscribed — JazakAllahu khair'" class="mt-10 flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+      <input type="email" required placeholder="you@example.com"
+             class="flex-1 bg-transparent border border-cream/30 placeholder-cream/50 text-cream px-5 py-4 focus:outline-none focus:border-cream" />
+      <button class="bg-cream text-forest-800 px-7 py-4 text-[12px] tracking-[0.22em] uppercase hover:bg-cream-100 transition">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer id="footer" class="bg-cream-100 border-t border-forest-800/10">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-16 pb-10 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-5">
+      <div class="flex items-center gap-3">
+        <span class="relative inline-block w-12 h-12 rounded-full bg-forest-800 text-cream overflow-hidden">
+          <svg viewBox="0 0 100 100" class="w-full h-full">
+            <defs>
+              <path id="topArc3" d="M 18,50 A 32,32 0 0 1 82,50" fill="none" />
+              <path id="botArc3" d="M 18,55 A 32,32 0 0 0 82,55" fill="none" />
+            </defs>
+            <text fill="#FDFBF7" font-family="Manrope" font-size="7" letter-spacing="2.5">
+              <textPath href="#topArc3" startOffset="50%" text-anchor="middle">EST · 2026</textPath>
+            </text>
+            <text fill="#FDFBF7" font-family="Manrope" font-size="5.5" letter-spacing="2">
+              <textPath href="#botArc3" startOffset="50%" text-anchor="middle">QURAN 92:5–7</textPath>
+            </text>
+            <text x="50" y="44" text-anchor="middle" fill="#FDFBF7" font-family="Cormorant Garamond" font-size="9" font-style="italic">Sweets for</text>
+            <text x="50" y="62" text-anchor="middle" fill="#FDFBF7" font-family="Pinyon Script" font-size="16">Sadaqah</text>
+          </svg>
+        </span>
+        <div>
+          <div class="font-serif-display text-xl text-forest-900">Sweets for <em class="font-script not-italic text-2xl">Sadaqah</em></div>
+          <div class="text-[10px] tracking-[0.28em] uppercase text-forest-800/60">Baked with intention · Est. 2026</div>
+        </div>
+      </div>
+      <p class="mt-6 font-serif-display italic text-xl text-forest-900/85 leading-snug max-w-md">
+        “We will ease them toward ease.”
+      </p>
+      <div class="text-[11px] tracking-[0.22em] uppercase text-forest-800/60 mt-2">Surah Al-Layl · 92:7</div>
+    </div>
+
+    <div class="lg:col-span-2">
+      <div class="text-[11px] tracking-[0.3em] uppercase text-forest-800/60">Shop</div>
+      <ul class="mt-4 space-y-3 text-sm text-ink/75">
+        <li><a href="#menu" class="hover:text-forest-800">Cookies</a></li>
+        <li><a href="#menu" class="hover:text-forest-800">Boxes</a></li>
+        <li><a href="#menu" class="hover:text-forest-800">Subscription</a></li>
+        <li><a href="#" class="hover:text-forest-800">Wholesale</a></li>
+      </ul>
+    </div>
+
+    <div class="lg:col-span-2">
+      <div class="text-[11px] tracking-[0.3em] uppercase text-forest-800/60">About</div>
+      <ul class="mt-4 space-y-3 text-sm text-ink/75">
+        <li><a href="#story" class="hover:text-forest-800">Our Story</a></li>
+        <li><a href="#mission" class="hover:text-forest-800">Mission</a></li>
+        <li><a href="#impact" class="hover:text-forest-800">Impact</a></li>
+        <li><a href="#" class="hover:text-forest-800">Partners</a></li>
+      </ul>
+    </div>
+
+    <div class="lg:col-span-3">
+      <div class="text-[11px] tracking-[0.3em] uppercase text-forest-800/60">Visit</div>
+      <p class="mt-4 text-sm text-ink/75 leading-relaxed">
+        Pickup window<br/>
+        Bay Ridge, Brooklyn NY<br/>
+        Saturdays · 10am – 4pm
+      </p>
+      <div class="mt-5 flex items-center gap-3">
+        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full border border-forest-800/20 inline-flex items-center justify-center text-forest-800 hover:bg-forest-800 hover:text-cream transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+        <a href="#" aria-label="Email" class="w-9 h-9 rounded-full border border-forest-800/20 inline-flex items-center justify-center text-forest-800 hover:bg-forest-800 hover:text-cream transition"><i data-lucide="mail" class="w-4 h-4"></i></a>
+        <a href="#" aria-label="TikTok" class="w-9 h-9 rounded-full border border-forest-800/20 inline-flex items-center justify-center text-forest-800 hover:bg-forest-800 hover:text-cream transition"><i data-lucide="music-2" class="w-4 h-4"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-forest-800/10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-ink/55">
+      <div>© 2026 Sweets for Sadaqah. Baked in Brooklyn.</div>
+      <div class="flex items-center gap-5">
+        <a href="#" class="hover:text-forest-800">Privacy</a>
+        <a href="#" class="hover:text-forest-800">Terms</a>
+        <a href="#" class="hover:text-forest-800">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== TOAST ============== -->
+<div x-cloak x-show="toast"
+     x-transition.opacity
+     x-init="$watch('toast', v => { if(v) setTimeout(()=> toast=null, 2600) })"
+     class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-forest-800 text-cream px-5 py-3 text-sm tracking-wide shadow-soft z-50 flex items-center gap-3">
+  <i data-lucide="check" class="w-4 h-4"></i>
+  <span x-text="toast"></span>
+</div>
+
+<script>
+  // Init icons
+  window.addEventListener('load', () => {
+    if (window.lucide) lucide.createIcons();
+    // Re-run when Alpine renders dynamic content (cookies grid, mobile menu)
+    setTimeout(() => window.lucide && lucide.createIcons(), 300);
+  });
+  document.addEventListener('alpine:initialized', () => {
+    if (window.lucide) lucide.createIcons();
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
